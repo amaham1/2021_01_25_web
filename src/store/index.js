@@ -1,23 +1,16 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
+import state from './states.js'
+import getters from './getters.js'
+import mutations from './mutations'
+import actions from './actions'
+
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-  state: {
-    host: 'http://localhost:8080',
-    token: '',
-    role: ''
-  },
-  mutations: {
-    loginToken: function (state, payload) {
-      state.token = payload
-    },
-    logout (state) {
-      if (state.token) {
-        state.token = ''
-        alert('응')
-      }
-    }
-  }
+  state,
+  getters,
+  mutations,
+  actions
 })

@@ -74,6 +74,9 @@
       </tbody>
     </table>
   </div>
+  <div>
+    <vue-editor v-model="board.board_content"></vue-editor>
+  </div>
 </div>
 
 </template>
@@ -81,6 +84,7 @@
 <script>
 
 import { VueEditor } from 'vue2-editor'
+import CSNetwork from '@/utils/CSNetwork'
 
 export default {
   components: {
@@ -98,31 +102,19 @@ export default {
     }
   },
   created () {
-    var asd = this.$store.state.token
-    this.$Axios
-      .get('http://localhost:8080/user/info?user_name=""', {
-        headers: {
-          'Authorization': asd
-        }
-      })
-      .then(result => console.log(result.data)
-      )
+    CSNetwork.get_user_info().then((res) => {
+      this.user_info = res
+    })
     this.a1()
     this.a2()
   },
 
   methods: {
     write () {
-      this.$Axios
-        .post('http://localhost:8080/post/write', this.board_param, {
-          headers: {
-            'Authorization': this.$store.state.token
-          }
-        })
-        .then(res => {
-          alert('저장되었습니다')
-          this.a1()
-        })
+      CSNetwork.post_write().then((result) => {
+        alert('저장되었습니닷')
+        this.a1()
+      })
     },
     a1 () {
       this.$Axios
@@ -132,19 +124,13 @@ export default {
           }
         })
         .then(result => {
-          this.user_info = result.data
+          this.user_info = result
         })
     },
     a2 () {
-      this.$Axios
-        .get('http://localhost:8080/post/getposter', {
-          headers: {
-            'Authorization': this.$store.state.token
-          }
-        })
-        .then(result => {
-          this.board = result.data
-        })
+      CSNetwork.post_get_poster().then((result) => {
+        this.board = result
+      })
     }
   }
 }
