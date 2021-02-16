@@ -31,7 +31,7 @@
           <td>1</td>
           <td>{{item.user_name}}</td>
           <td>$36,738</td>
-          <td>Niger</td>
+          <td>Earth</td>
           <td>Oud-Turnhout</td>
           <td></td>
         </tr>
@@ -43,17 +43,16 @@
     <h2 id="sharrreTitle">Thank you for shares!</h2>
   </div>
   <div>
-    <input v-model="board.board_title">
+    <input v-model="board_param.board_title">
   </div>
   <div>
-    <vue-editor v-model="board.board_content"></vue-editor>
+    <vue-editor v-model="board_param.board_content"></vue-editor>
   </div>
   <button v-on:click="write">
-    hi
+    글쓰기
   </button>
   <div>
     <h2>Home</h2>
-    <div>{%raw%}{{greeting}}{%endraw%}</div>
     <table id="fresh-table" class="table">
       <thead>
         <th data-field="id">ID</th>
@@ -75,7 +74,7 @@
     </table>
   </div>
   <div>
-    <vue-editor v-model="board.board_content"></vue-editor>
+    <vue-editor v-model="board_param.board_content"></vue-editor>
   </div>
 </div>
 
@@ -111,9 +110,11 @@ export default {
 
   methods: {
     write () {
-      CSNetwork.post_write().then((result) => {
+      CSNetwork.post_write(this.board_param).then((result) => {
         alert('저장되었습니닷')
         this.a1()
+      }).catch((result) => {
+        console.log(result)
       })
     },
     a1 () {
