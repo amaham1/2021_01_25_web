@@ -6,7 +6,6 @@
       <input type="password" v-model="loginInfo.user_pwd" placeholder="Password" />
       <input type="submit" value="Login" />
     </form>
-    <p><i>{{msg}}</i></p>
   </div>
 </template>
 
@@ -32,14 +31,6 @@ export default {
       } else {
         this.Login(this.loginInfo)
       }
-
-      /* // LOGIN 액션 실행
-      this.$Axios.post('http://localhost:8080/user/login', { user_id: this.user_id, user_pwd: this.user_pwd})
-        .then(res => {
-          console.log(res.data.token)
-          this.$store.commit('loginToken', res.data.token)
-          this.$router.push('/home')
-        }) */
     },
     ...mapActions(['Login'])
   }

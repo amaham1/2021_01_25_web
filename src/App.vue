@@ -1,21 +1,22 @@
 <template>
   <div id="app">
-    <Header/>
-    <router-view/>
+    <router-view name="header"></router-view>
+    <router-view name="left"></router-view>
+    <router-view />
   </div>
 </template>
 
 <script>
 
 export default {
-
+  name: 'App'
 }
 </script>
 
 <style>
-#app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  text-align: center;
-  color: #2c3e50;
-}
+@import '../src/assets/css/reset.css';
+@import '../src/assets/css/common.css';
+@import '../src/assets/css/content.css';
+@import '../src/assets/css/vue-sidebar-menu.css';
+@import '../src/assets/css/vue-sidebar-menu-tmass.css';
 </style>
