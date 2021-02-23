@@ -7,6 +7,7 @@ import Header from '@/components/layout/Header'
 import Left from '@/components/layout/Left'
 import Greeting from '../vues/intro/greeting'
 import Parmplace from '../vues/intro/parmplace'
+import GoodsDetatil from '../vues/goodsDetail'
 
 Vue.use(Router)
 
@@ -54,6 +55,18 @@ export default new Router({
         header: Header,
         left: Left,
         default: GoodsList
+      }
+    },
+    {
+      path: '/goodsList/detail/:goods_id',
+      name: 'goodsListDetail',
+      components: {
+        header: Header,
+        left: Left,
+        default: GoodsDetatil
+      },
+      props: {
+        default: true
       }
     },
     {
